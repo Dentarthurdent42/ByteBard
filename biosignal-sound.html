@@ -198,6 +198,18 @@ html, body {
   position: absolute; inset: 0;
   transform: scaleX(-1);
 }
+#latency-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.55);
+  color: #00e5cc;
+  font-family: monospace;
+  font-size: 9px; letter-spacing: .07em;
+  padding: 3px 8px;
+  display: none; gap: 0; flex-wrap: wrap;
+  pointer-events: none;
+}
+#latency-bar span { margin-right: 14px; }
+#latency-bar span b { color: #fff; }
 #cam-placeholder {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
@@ -463,6 +475,12 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.3); }
       <div id="video-wrap">
         <video id="video" autoplay playsinline muted></video>
         <canvas id="overlay"></canvas>
+        <div id="latency-bar">
+          <span>FPS <b id="lat-fps">—</b></span>
+          <span>HAND <b id="lat-hand">—</b></span>
+          <span>POSE <b id="lat-pose">—</b></span>
+          <span>TOTAL <b id="lat-total">—</b></span>
+        </div>
         <div id="cam-placeholder">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
             <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
@@ -555,6 +573,8 @@ const bus = (() => {
 // ═══════════════════════════════════════════════════════════════════════
 //  MATH HELPERS
 // ═══════════════════════════════════════════════════════════════════════
+const push30 = (arr, v) => { arr.push(v); if (arr.length > 30) arr.shift(); };
+
 const dist3 = (a, b) => {
   const dx = a.x-b.x, dy = a.y-b.y, dz = (a.z||0)-(b.z||0);
   return Math.sqrt(dx*dx + dy*dy + dz*dz);
@@ -679,6 +699,10 @@ const cvSource = {
 
     document.getElementById('cam-placeholder').style.display = 'none';
     this.video.classList.add('ready');
+
+    this._lat = { hand: [], pose: [], total: [], interval: [], lastT: 0, frame: 0 };
+    document.getElementById('latency-bar').style.display = 'flex';
+
     this.running = true;
     this.loop();
   },
@@ -687,17 +711,43 @@ const cvSource = {
   loop() {
     if (!this.running) return;
     const now = performance.now();
+
+    // Track RAF interval for FPS
+    const lat = this._lat;
+    if (lat.lastT) push30(lat.interval, now - lat.lastT);
+    lat.lastT = now;
+
     if (this.video.currentTime !== this.lastTime) {
       this.lastTime = this.video.currentTime;
       try {
+        const t0 = performance.now();
         const hr = this.hand.detectForVideo(this.video, now);
+        const t1 = performance.now();
         const pr = this.pose.detectForVideo(this.video, now);
+        const t2 = performance.now();
         this.processHands(hr);
         this.processPose(pr);
         this.drawOverlay(hr, pr);
+        const t3 = performance.now();
+
+        push30(lat.hand,  t1 - t0);
+        push30(lat.pose,  t2 - t1);
+        push30(lat.total, t3 - t0);
+
+        if (++lat.frame % 15 === 0) this._updateLatency();
       } catch(e) {}
     }
     requestAnimationFrame(() => this.loop());
+  },
+
+  _updateLatency() {
+    const { hand, pose, total, interval } = this._lat;
+    const ms = a => a.length ? (a.reduce((s,v) => s+v, 0) / a.length).toFixed(1) + 'ms' : '—';
+    const fps = interval.length ? (1000 / (interval.reduce((s,v) => s+v, 0) / interval.length)).toFixed(0) : '—';
+    document.getElementById('lat-fps').textContent   = fps;
+    document.getElementById('lat-hand').textContent  = ms(hand);
+    document.getElementById('lat-pose').textContent  = ms(pose);
+    document.getElementById('lat-total').textContent = ms(total);
   },
 
   // ── Signal extraction: hands ──────────────────────────────────────
