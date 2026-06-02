@@ -1,5 +1,10 @@
 const CACHE = 'biosignal-v1';
 
+// Derive base from the SW's own scope so paths work whether the app is
+// served from / (Cloudflare Pages, GitHub Pages custom domain) or a
+// subpath like /music-maker/ (GitHub Pages project URL).
+const BASE = self.registration.scope.replace(/\/$/, '');
+
 const STATIC = [
   '/',
   '/index.html',
@@ -18,7 +23,7 @@ const STATIC = [
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/manifest.json',
-];
+].map(p => BASE + p);
 
 // Pre-cache all local static assets on install
 self.addEventListener('install', e => {
@@ -52,7 +57,6 @@ self.addEventListener('fetch', e => {
     caches.match(e.request).then(cached => {
       if (cached) return cached;
       return fetch(e.request).then(res => {
-        // Only cache successful same-origin GET responses
         if (res.ok && e.request.method === 'GET') {
           const clone = res.clone();
           caches.open(CACHE).then(c => c.put(e.request, clone));
