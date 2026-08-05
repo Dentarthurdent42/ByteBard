@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>MotionMuse</title>
+<title>ByteBard</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#00e5cc">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="MotionMuse">
+<meta name="apple-mobile-web-app-title" content="ByteBard">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
 <div id="app">
   <!-- ── Header ──────────────────────────────────────────── -->
   <header id="header">
-    <div class="logo">MOTION<span>MUSE</span></div>
+    <div class="logo">BYTE<span>BARD</span></div>
     <div class="hstatus">
       <div class="dot" id="cv-dot"></div>
       <span id="status-lbl">READY</span>
@@ -29,6 +29,8 @@
     <button class="btn purple" id="audio-btn">AUDIO OFF</button>
     <button class="btn" id="dev-btn" aria-pressed="false"
             title="Developer mode — reveals experimental, under-construction features">DEV</button>
+    <button class="btn" id="donate-btn" aria-haspopup="menu" aria-expanded="false"
+            title="Support this project — donation links">♥</button>
   </header>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -47,8 +49,8 @@
         <canvas id="overlay"></canvas>
         <canvas id="face-overlay"></canvas>
         <div class="cam-toggles">
-          <button id="depth-btn" class="depth-toggle"
-                  title="Use an optical depth sensor (WebXR LiDAR / ToF) for true metric depth">◈ LiDAR</button>
+          <button id="depth-btn" class="depth-toggle uc-feature"
+                  title="Under construction — use an optical depth sensor (WebXR LiDAR / ToF) for true metric depth (DEV mode feature)"><span id="depth-btn-lbl">◈ LiDAR</span><span class="src-tab-wip">🚧</span></button>
           <button id="face-btn" class="depth-toggle" disabled
                   title="Track facial landmarks: eyebrows, lips, tongue, cheeks, ears (start the camera first)">☺ FACE</button>
           <button id="gaze-btn" class="depth-toggle" disabled
@@ -63,6 +65,7 @@
           <span>HAND <b id="lat-hand">—</b></span>
           <span>POSE <b id="lat-pose">—</b></span>
           <span>TOTAL <b id="lat-total">—</b></span>
+          <span class="uc-feature">MODEL <b id="lat-model">—</b></span>
           <span id="lat-depth-wrap" style="display:none">DEPTH <b id="lat-depth">—</b></span>
         </div>
         <div id="cam-placeholder">
@@ -72,6 +75,21 @@
           <span>START CAMERA</span>
         </div>
         <canvas id="fs-kbd"></canvas>
+      </div>
+
+      <div class="panel uc-feature" id="model-panel" style="border-top:1px solid var(--border);">
+        <div class="ph">MODELS <span class="uc-badge">dev</span></div>
+        <div class="pb" id="model-body">
+          <label class="model-row">POSE
+            <select id="model-pose" aria-label="Pose estimation model"></select>
+          </label>
+          <label class="model-row">DELEGATE
+            <select id="model-delegate" aria-label="Inference delegate (MediaPipe models)">
+              <option>GPU</option><option>CPU</option>
+            </select>
+          </label>
+          <div id="model-stats">start camera for live stats</div>
+        </div>
       </div>
 
       <div class="panel" style="border-top:1px solid var(--border);">
