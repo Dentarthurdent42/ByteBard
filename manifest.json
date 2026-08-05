@@ -1,6 +1,6 @@
 {
-  "name": "MotionMuse",
-  "short_name": "MotionMuse",
+  "name": "ByteBard",
+  "short_name": "ByteBard",
   "description": "Map hand tracking and body pose to audio synthesis in real time.",
   "start_url": ".",
   "display": "standalone",

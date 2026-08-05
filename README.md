@@ -1,10 +1,10 @@
-# MotionMuse
+# ByteBard
 
 A browser-based instrument that maps live webcam data — hand position, gesture, and body pose — to audio synthesis parameters in real time. No plugins, no install: pure Web APIs served as static files.
 
 ## Demo
 
-![MotionMuse screenshot](docs/screenshot.png)
+![ByteBard screenshot](docs/screenshot.png)
 
 Open `index.html` (or the Netlify deploy) and:
 1. Click **START CAMERA** — MediaPipe loads and begins detecting hands and pose
@@ -13,7 +13,7 @@ Open `index.html` (or the Netlify deploy) and:
 
 ## Support
 
-If MotionMuse is useful to you, you can support its development — the **♥**
+If ByteBard is useful to you, you can support its development — the **♥**
 button in the app header links to:
 
 - [GitHub Sponsors](https://github.com/sponsors/Dentarthurdent42)
@@ -213,7 +213,7 @@ PERFECT/GOOD/MISS text rises off the hit line. Songs end on a results screen:
 a big **letter grade** from accuracy (S ≥ 95%, A ≥ 90%, B ≥ 75%, C ≥ 60%,
 else D), score with a **★ NEW BEST** star when you beat your record, tier
 counts and best streak. Best scores persist per song per difficulty in
-`localStorage` (`motionmuse-scores` — kept out of shareable preset files);
+`localStorage` (`bytebard-scores` — kept out of shareable preset files);
 the panel shows the saved best for the selected song while idle. Quitting
 mid-song discards the run.
 
@@ -233,7 +233,10 @@ mid-song discards the run.
 mapping plus all audio parameters, waveform/filter choices and the pitch-quantise
 tuning and the volume-step configuration — as a single `.json` file you can keep or share. **LOAD** restores one.
 The current session is also stored in `localStorage`, so your setup returns
-automatically after a reload or PWA relaunch. Serialisation lives in
+automatically after a reload or PWA relaunch. Preset files and stored keys were
+renamed with the ByteBard rebrand; files saved under the old name still load,
+and existing settings, panel widths and high scores migrate across on first
+read (`src/storage.js`). Serialisation lives in
 `src/preset.js`; `engine.snapshot()`/`restore()` and `mapper.serialize()`/`load()`
 own their respective slices of state.
 
@@ -342,6 +345,7 @@ src/
   math.js           Geometry helpers (dist3, angleBetween, handOpenness, fingerExt)
   engine.js         Web Audio API synthesiser
   scale.js          Scale + tuning pitch quantiser
+  storage.js        Brand-prefixed localStorage + legacy-key migration
   dynamics.js       Volume step ladder (dB levels, silence gate, hysteresis)
   mapper.js         Signal → audio parameter routing and curves
   preset.js         Save/load of mappings + settings (file + localStorage)

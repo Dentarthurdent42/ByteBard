@@ -6,6 +6,7 @@
 
 import { engine }       from './engine.js';
 import { mtof }         from './scale.js';
+import { lsGet, lsSet } from './storage.js';
 import { mapper }       from './mapper.js';
 import { SONGS }        from './songs.js';
 import { midiOf }       from './ui/keyboard.js';
@@ -70,14 +71,14 @@ let lastSongId = 'ode-to-joy', lastDiffId = 'medium';
 
 // Best scores persist per song per difficulty — own key, NOT the preset
 // snapshot (presets are shareable files; scores are personal).
-const SCORES_KEY = 'motionmuse-scores';
+const SCORES_KEY = 'bytebard-scores';
 function loadScores() {
-  try { return JSON.parse(localStorage.getItem(SCORES_KEY)) || {}; } catch { return {}; }
+  try { return JSON.parse(lsGet(SCORES_KEY)) || {}; } catch { return {}; }
 }
 function saveBest(songId, dId, entry) {
   const s = loadScores();
   (s[songId] ??= {})[dId] = entry;
-  try { localStorage.setItem(SCORES_KEY, JSON.stringify(s)); } catch { /* private mode */ }
+  lsSet(SCORES_KEY, JSON.stringify(s));
 }
 
 function nowMs() { return (engine.now() - t0) * 1000; }

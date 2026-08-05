@@ -1,4 +1,4 @@
-# MotionMuse — Live Demo Script
+# ByteBard — Live Demo Script
 
 A ~8-minute walkthrough for a technical interviewer or hiring manager. It moves
 in three beats: **hook them in 60 seconds → show range → prove depth.** Talk
@@ -14,7 +14,7 @@ tracks are in plain text; **[DO]** lines are the exact actions to take.
 
 ## 0. One-liner (say this before you touch anything) — 15 sec
 
-> "MotionMuse turns your webcam into a musical instrument. Your hands and body
+> "ByteBard turns your webcam into a musical instrument. Your hands and body
 > become the controls — no MIDI hardware, no plugins, no install. It's just a
 > static website: pure browser APIs. I built the whole signal chain from the
 > camera to the sound."
@@ -154,7 +154,7 @@ prints a PASS table over the fist / peace / point / thumbs-up photos.
 
 ## 4. Close — 20 sec
 
-> "So that's MotionMuse: a real-time computer-vision instrument, entirely in the
+> "So that's ByteBard: a real-time computer-vision instrument, entirely in the
 > browser, with a decoupled signal architecture, a visual node-graph mapper, and
 > a test suite covering the tricky parts. Happy to go deeper on any layer — the
 > audio graph, the CV feature extraction, the mapping curves, whatever you'd like."

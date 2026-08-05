@@ -18,7 +18,7 @@ export function initDonate() {
   pop.setAttribute('role', 'menu');
   pop.hidden = true;
   pop.innerHTML = `
-    <div class="donate-title">SUPPORT MOTIONMUSE</div>
+    <div class="donate-title">SUPPORT BYTEBARD</div>
     ${LINKS.map(([name, url]) => `
       <a href="${url}" target="_blank" rel="noopener" role="menuitem">${name} ↗</a>`).join('')}
   `;
