@@ -1,4 +1,4 @@
-const CACHE = 'bytebard-v2';
+const CACHE = 'bytebard-v3';
 
 // MediaPipe wasm + .task model files live at versioned/immutable URLs, so
 // cache-first is safe and saves ~10-25MB of re-download on every cold load
@@ -54,6 +54,7 @@ const STATIC = [
   '/src/ui/viz.js',
   '/src/ui/donate.js',
   '/src/ui/tutorial.js',
+  '/src/ui/preset-menu.js',
   '/src/ui/model-ui.js',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
