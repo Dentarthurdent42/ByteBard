@@ -36,6 +36,9 @@ const LEGACY_TAGS = ['biosignal-sound'];
 const UI_KEYS = {
   theme:       'bytebard-theme',
   sections:    'bytebard-sections',
+  secOrder:    'bytebard-sec-order',
+  secFolded:   'bytebard-sec-folded',
+  secHome:     'bytebard-sec-home',
   panelWidths: 'bytebard-panel-widths',
   camHeight:   'bytebard-cam-height',
   tracking:    'bytebard-tracking',
