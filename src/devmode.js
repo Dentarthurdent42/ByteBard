@@ -5,7 +5,7 @@
 
 import { lsGet, lsSet } from './storage.js';
 
-const KEY = 'bytebard-dev';
+const KEY = 'motionmuse-dev';
 const cbs = [];
 let enabled = lsGet(KEY) === '1';
 

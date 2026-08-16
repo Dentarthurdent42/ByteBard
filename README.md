@@ -1,10 +1,10 @@
-# ByteBard
+# MotionMuse
 
 A browser-based instrument that maps live webcam data — hand position, gesture, and body pose — to audio synthesis parameters in real time. No plugins, no install: pure Web APIs served as static files.
 
 ## Demo
 
-![ByteBard: the camera panel, the patchbay wiring hand signals to synth parameters, and the audio engine — shown with the default Hands patch loaded and the output muted](docs/screenshot.png)
+![MotionMuse: the camera panel, the patchbay wiring hand signals to synth parameters, and the audio engine — shown with the default Hands patch loaded and the output muted](docs/screenshot.png)
 
 <sub>Regenerate with `npm run screenshot` after a visible UI change.</sub>
 
@@ -16,7 +16,7 @@ Open `index.html` (or the Netlify deploy) and:
 
 ## Support
 
-If ByteBard is useful to you, you can support its development — the **♥**
+If MotionMuse is useful to you, you can support its development — the **♥**
 button in the app header links to:
 
 - [GitHub Sponsors](https://github.com/sponsors/Dentarthurdent42)
@@ -808,7 +808,7 @@ PERFECT/GOOD/MISS text rises off the hit line. Songs end on a results screen:
 a big **letter grade** from accuracy (S ≥ 95%, A ≥ 90%, B ≥ 75%, C ≥ 60%,
 else D), score with a **★ NEW BEST** star when you beat your record, tier
 counts and best streak. Best scores persist per song per difficulty in
-`localStorage` (`bytebard-scores` — kept out of shareable preset files);
+`localStorage` (`motionmuse-scores` — kept out of shareable preset files);
 the panel shows the saved best for the selected song while idle. Quitting
 mid-song discards the run.
 
@@ -835,7 +835,7 @@ saved in the old absolute `root + octave + quality` format migrate to the neares
 degree of the key.
 The current session is also stored in `localStorage`, so your setup returns
 automatically after a reload or PWA relaunch. Preset files and stored keys were
-renamed with the ByteBard rebrand; files saved under the old name still load,
+renamed with the MotionMuse rebrand; files saved under the old name still load,
 and existing settings, panel widths and high scores migrate across on first
 read (`src/storage.js`). Serialisation lives in
 `src/preset.js`; `engine.snapshot()`/`restore()` and `mapper.serialize()`/`load()`

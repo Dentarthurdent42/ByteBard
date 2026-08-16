@@ -15,7 +15,7 @@ import { engine } from '../engine.js';
 import { lsGet, lsSet } from '../storage.js';
 import { readShareUrl } from '../share.js';
 
-const KEY = 'bytebard-started';
+const KEY = 'motionmuse-started';
 
 // Choices, in the order they are offered. The mapping presets come from the
 // same table the PRESET menu uses, so a preset added later appears here too

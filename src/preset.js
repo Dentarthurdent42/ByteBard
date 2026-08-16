@@ -16,8 +16,8 @@ import { chordmode } from './chordmode.js';
 import { shader } from './shader.js';
 import { lsGet, lsSet } from './storage.js';
 
-const LS_KEY = 'bytebard-session-v1';
-const TAG    = 'bytebard-sound';
+const LS_KEY = 'motionmuse-session-v1';
+const TAG    = 'motionmuse-sound';
 // Preset files saved before the rename carry the old tag. They're the same
 // format, so keep loading them rather than telling people their file is
 // invalid.
@@ -34,17 +34,17 @@ const LEGACY_TAGS = ['biosignal-sound'];
 // values those modules already treat as the source of truth, and going through
 // the store means a module that is not loaded yet cannot cost us a key.
 const UI_KEYS = {
-  theme:       'bytebard-theme',
-  sections:    'bytebard-sections',
-  secOrder:    'bytebard-sec-order',
-  secFolded:   'bytebard-sec-folded',
-  secHome:     'bytebard-sec-home',
-  panelWidths: 'bytebard-panel-widths',
-  camHeight:   'bytebard-cam-height',
-  tracking:    'bytebard-tracking',
-  models:      'bytebard-posemodel',
-  hotkeys:     'bytebard-hotkeys',
-  dev:         'bytebard-dev',
+  theme:       'motionmuse-theme',
+  sections:    'motionmuse-sections',
+  secOrder:    'motionmuse-sec-order',
+  secFolded:   'motionmuse-sec-folded',
+  secHome:     'motionmuse-sec-home',
+  panelWidths: 'motionmuse-panel-widths',
+  camHeight:   'motionmuse-cam-height',
+  tracking:    'motionmuse-tracking',
+  models:      'motionmuse-posemodel',
+  hotkeys:     'motionmuse-hotkeys',
+  dev:         'motionmuse-dev',
 };
 
 function uiSnapshot() {
@@ -116,7 +116,7 @@ export function restoreLocal() {
   } catch { return false; }
 }
 
-export function downloadFile(name = 'bytebard-preset.json') {
+export function downloadFile(name = 'motionmuse-preset.json') {
   const blob = new Blob([JSON.stringify(snapshot(), null, 2)], { type: 'application/json' });
   const url  = URL.createObjectURL(blob);
   const a    = Object.assign(document.createElement('a'), { href: url, download: name });
@@ -129,6 +129,6 @@ export function downloadFile(name = 'bytebard-preset.json') {
 export async function loadFromFile(file) {
   const data = JSON.parse(await file.text());
   const { ok, uiChanged } = applyAll(data);
-  if (!ok) throw new Error('Not a ByteBard preset');
+  if (!ok) throw new Error('Not a MotionMuse preset');
   return { uiChanged };
 }

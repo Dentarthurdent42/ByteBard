@@ -8,7 +8,7 @@
 
 import { lsGet, lsSet } from '../storage.js';
 
-const KEY = 'bytebard-theme';
+const KEY = 'motionmuse-theme';
 
 export const THEMES = [
   { id: 'midnight', label: 'Midnight',  dark: true  },

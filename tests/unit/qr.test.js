@@ -77,7 +77,7 @@ test('a share-sized URL round-trips', () => {
   // compresses to.
   const payload = Array.from({ length: 760 },
     (_, i) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'[i % 64]).join('');
-  const url = `https://bytebard.example/#s=${payload}`;
+  const url = `https://motionmuse.example/#s=${payload}`;
   const { qr, decoded } = roundTrip(url, { ecc: 'L' });
   assert.equal(decoded, url);
   assert.ok(qr.version <= 25, `version ${qr.version} is too dense to scan off a screen`);
@@ -92,7 +92,7 @@ test('the largest payload the encoder claims to take actually round-trips', () =
 });
 
 test('UTF-8 survives the trip', () => {
-  const text = 'ByteBard — ♥ 音楽';
+  const text = 'MotionMuse — ♥ 音楽';
   assert.equal(roundTrip(text).decoded, text);
 });
 

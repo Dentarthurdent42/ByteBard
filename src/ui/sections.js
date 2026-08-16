@@ -23,10 +23,10 @@
 import { lsGet, lsSet } from '../storage.js';
 import { stepsForSection, startSectionHelp } from './tutorial.js';
 
-const KEY = 'bytebard-sections';
-const ORDER_KEY = 'bytebard-sec-order';
-const FOLD_KEY  = 'bytebard-sec-folded';
-const HOME_KEY  = 'bytebard-sec-home';
+const KEY = 'motionmuse-sections';
+const ORDER_KEY = 'motionmuse-sec-order';
+const FOLD_KEY  = 'motionmuse-sec-folded';
+const HOME_KEY  = 'motionmuse-sec-home';
 const MIN_H = 56;              // below this a section is unreadable, not compact
 
 // The containers a section is allowed to live in, so a drop always lands

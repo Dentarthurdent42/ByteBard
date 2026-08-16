@@ -43,7 +43,7 @@ export function initModelPanel() {
         await cvSource.setPoseBackend(poseSel.value, delSel.value);
         toast(`Pose ${poseSel.value} · ${delSel.value}`);
       } else {                       // camera not started yet — just persist
-        lsSet('bytebard-posemodel', JSON.stringify(
+        lsSet('motionmuse-posemodel', JSON.stringify(
           { ...cvSource._savedModel(), backend: poseSel.value, delegate: delSel.value }));
       }
     } catch (e) {

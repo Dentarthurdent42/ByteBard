@@ -53,8 +53,8 @@ import { chordmode }    from '../chordmode.js';
 // mode you chose, and the mode is what the starting-point picker sets.
 export const TOUR_STEPS = [
   {
-    id: 'welcome', target: null, title: 'Welcome to ByteBard',
-    body: 'ByteBard turns your webcam into an instrument: hand position, ' +
+    id: 'welcome', target: null, title: 'Welcome to MotionMuse',
+    body: 'MotionMuse turns your webcam into an instrument: hand position, ' +
           'gestures and body pose become sound, live in the browser. Nothing ' +
           'is uploaded — all processing happens on your machine.<br><br>' +
           'This tour covers the way of playing you just picked. Re-open it any ' +
@@ -74,7 +74,7 @@ export const TOUR_STEPS = [
   },
   {
     id: 'signals', section: 'signals', target: '#sig-list', title: 'Signals',
-    body: 'Every measurement ByteBard extracts — wrist height, pinch, finger ' +
+    body: 'Every measurement MotionMuse extracts — wrist height, pinch, finger ' +
           'curl, elbow angle, thumb-to-finger touches — appears here as a live ' +
           'signal once the camera runs. Anything in this list can drive sound.',
   },
@@ -181,7 +181,7 @@ export const TOUR_STEPS = [
   },
   {
     id: 'dev', target: '#dev-btn', title: 'Under construction',
-    body: 'ByteBard is in active development. <b>DEV</b> reveals the ' +
+    body: 'MotionMuse is in active development. <b>DEV</b> reveals the ' +
           'still-experimental parts — pose-model comparison, the shader ' +
           'visualiser, the planned EEG/EMG inputs, and the inference timings ' +
           'under the camera — all marked 🚧. Everything else, gestures and ' +
@@ -231,20 +231,20 @@ export const TOUR_STEPS = [
   },
   {
     id: 'donate', target: '#donate-btn', title: 'Support the project',
-    body: 'If ByteBard is useful or fun, the ♥ lists ways to support ' +
+    body: 'If MotionMuse is useful or fun, the ♥ lists ways to support ' +
           'development. Entirely optional, always will be.',
   },
   {
     id: 'finish', target: null, title: 'That’s the tour',
     body: 'Quick start: <b>START CAMERA → PRESET → Space</b> to unmute, then ' +
           'move your right hand up and down and pinch to shape notes.<br><br>' +
-          'ByteBard updates often — when new features land, the <b>?</b> ' +
+          'MotionMuse updates often — when new features land, the <b>?</b> ' +
           'button pulses and the tour gains steps. The README covers ' +
           'everything here in depth.',
   },
 ];
 
-const LS_KEY = 'bytebard-tour';   // { done: bool, seen: [stepId] }
+const LS_KEY = 'motionmuse-tour';   // { done: bool, seen: [stepId] }
 
 const loadState = () => {
   try { return { done: false, seen: [], ...JSON.parse(lsGet(LS_KEY) || '{}') }; }

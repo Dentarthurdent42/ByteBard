@@ -71,7 +71,7 @@ let lastSongId = 'ode-to-joy', lastDiffId = 'medium';
 
 // Best scores persist per song per difficulty — own key, NOT the preset
 // snapshot (presets are shareable files; scores are personal).
-const SCORES_KEY = 'bytebard-scores';
+const SCORES_KEY = 'motionmuse-scores';
 function loadScores() {
   try { return JSON.parse(lsGet(SCORES_KEY)) || {}; } catch { return {}; }
 }

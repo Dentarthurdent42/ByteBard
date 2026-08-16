@@ -253,7 +253,7 @@ const relocation = await (async () => {
   // Seeded rather than dragged: the drag itself is a pointer-sequence concern,
   // while what must not regress is that the stored map is honoured.
   await page.addInitScript(() =>
-    localStorage.setItem('bytebard-sec-home', JSON.stringify({ gestures: 'map', 'sound-kit': 'cam' })));
+    localStorage.setItem('motionmuse-sec-home', JSON.stringify({ gestures: 'map', 'sound-kit': 'cam' })));
   await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(400);
 
