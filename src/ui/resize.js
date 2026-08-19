@@ -4,7 +4,7 @@
 import { isDesktop } from './viewport.js';
 import { lsGet, lsSet } from '../storage.js';
 
-const KEY = 'bytebard-panel-widths';
+const KEY = 'motionmuse-panel-widths';
 const NARROW_DEF  = { l: 320, r: 280 };
 const DESKTOP_DEF = { l: 380, r: 340 };   // wide windows start with more breathing room
 const MIN = 200;       // narrowest a side column may go
@@ -96,7 +96,7 @@ function measureTabs() {
 // #video-wrap derives its height from a 4:3 aspect-ratio. Driving the height
 // directly would either break the ratio or crop the frame, and a cropped frame
 // puts the landmark overlay out of register with the video.
-const CAM_KEY = 'bytebard-cam-height';
+const CAM_KEY = 'motionmuse-cam-height';
 const CAM_MIN_H = 90;
 
 function initCamHandle() {

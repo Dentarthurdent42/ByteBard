@@ -124,9 +124,9 @@ export async function consumeSharedLink() {
   history.replaceState(null, '', location.pathname + location.search);
   try {
     const data = await decodeState(payload);
-    if (!applyAll(data).ok) throw new Error('not a ByteBard setup');
+    if (!applyAll(data).ok) throw new Error('not a MotionMuse setup');
     saveLocal();
-    sessionStorage.setItem('bytebard-shared', '1');
+    sessionStorage.setItem('motionmuse-shared', '1');
     location.reload();
     return true;
   } catch (err) {
@@ -141,7 +141,7 @@ export async function consumeSharedLink() {
 // Say so once, after the reload — otherwise the app silently looks different
 // from the one the person left.
 export function announceSharedLink() {
-  if (sessionStorage.getItem('bytebard-shared') !== '1') return;
-  sessionStorage.removeItem('bytebard-shared');
+  if (sessionStorage.getItem('motionmuse-shared') !== '1') return;
+  sessionStorage.removeItem('motionmuse-shared');
   toast('Opened a shared setup');
 }

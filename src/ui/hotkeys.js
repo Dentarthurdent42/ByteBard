@@ -12,7 +12,7 @@
 
 import { lsGet, lsSet } from '../storage.js';
 
-const LS_KEY = 'bytebard-hotkeys';
+const LS_KEY = 'motionmuse-hotkeys';
 
 // KeyboardEvent.code values: layout-independent, so the shortcut sits on the
 // same physical key whatever the keyboard layout.

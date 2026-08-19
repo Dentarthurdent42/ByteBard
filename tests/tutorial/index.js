@@ -129,7 +129,7 @@ const r = await p.evaluate(async () => {
   out.ringGone = !document.getElementById('tour-ring');
   out.freshAfter = unseenSteps().length;
   out.stateSaved = (() => {
-    try { return JSON.parse(localStorage.getItem('bytebard-tour')).done === true; }
+    try { return JSON.parse(localStorage.getItem('motionmuse-tour')).done === true; }
     catch { return false; }
   })();
   return out;

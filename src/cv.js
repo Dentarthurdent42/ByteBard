@@ -73,7 +73,7 @@ export const cvSource = {
     if (!this.handsOn) this._lat?.hand.splice(0);
     if (!this.poseOn)  this._lat?.pose.splice(0);
     this._syncLatRows();
-    lsSet('bytebard-tracking', JSON.stringify(
+    lsSet('motionmuse-tracking', JSON.stringify(
       { handsL: this.handsL, handsR: this.handsR, pose: this.poseOn }));
     this._applyHandCount();
     return { hands: this.handsOn, handsL: this.handsL, handsR: this.handsR, pose: this.poseOn };
@@ -103,7 +103,7 @@ export const cvSource = {
 
   _loadTracking() {
     try {
-      const s = JSON.parse(lsGet('bytebard-tracking') || '{}');
+      const s = JSON.parse(lsGet('motionmuse-tracking') || '{}');
       // Migrate the older single `hands` flag.
       const both = s.hands !== false;
       this.handsL = s.handsL ?? both;
@@ -197,7 +197,7 @@ export const cvSource = {
   _savedModel() {
     const dflt = { backend: 'mp-lite', delegate: 'GPU' };
     let s;
-    try { s = { ...dflt, ...JSON.parse(lsGet('bytebard-posemodel') || '{}') }; }
+    try { s = { ...dflt, ...JSON.parse(lsGet('motionmuse-posemodel') || '{}') }; }
     catch { s = { ...dflt }; }
     // Hand count is derived from which sides are wanted — one owner, so the
     // header toggles and the model can't disagree about it.
@@ -262,7 +262,7 @@ export const cvSource = {
       this.hand = next;
       old?.close?.();
       this._lat?.hand.splice(0);
-      lsSet('bytebard-posemodel', JSON.stringify({ ...saved, delegate: d, hands: n }));
+      lsSet('motionmuse-posemodel', JSON.stringify({ ...saved, delegate: d, hands: n }));
       return true;
     } finally {
       this._switching = false;
@@ -288,7 +288,7 @@ export const cvSource = {
       this._lat?.pose.splice(0);   // stats restart for the new model
       // Merge, don't replace: this used to drop the hand settings stored
       // alongside, so changing the pose model reset hands to the default.
-      lsSet('bytebard-posemodel',
+      lsSet('motionmuse-posemodel',
         JSON.stringify({ ...this._savedModel(), backend: id, delegate }));
       this._setLatModel();
       return true;
